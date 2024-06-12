@@ -1,0 +1,115 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Test API
+servers:
+- url: *
+x-yc-apigateway:
+  cors:
+    origin: '*'
+    methods: '*'
+    allowedHeaders: '*'
+
+paths:
+  /hello:
+    get:
+      summary: Say hello
+      operationId: hello
+      parameters:
+        - name: user
+          in: query
+          description: User name to appear in greetings
+          required: false
+          schema:
+            type: string
+            default: 'world'
+      responses:
+        '200':
+          description: Greeting
+          content:
+            'text/plain':
+               schema:
+                 type: "string"
+      x-yc-apigateway-integration:
+        type: dummy
+        http_code: 200
+        http_headers:
+          'Content-Type': "text/plain"
+        content:
+          'text/plain': "Hello, {user}!\n"
+  /t-shirt:
+    post:
+      summary: getting image id
+      operationId: listNumbers
+      requestBody:
+        description: user info
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  profession:
+                    type: string
+                    example: электрик
+                  work_experience:
+                    type: integer
+                    format: int64
+                    example: 3
+                  work_skills:
+                    type: string
+                    example: ручной инструмент, 4 группа допуска 
+      responses:
+        '200':
+          description: Another example
+          content:
+            'application/json':
+               schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                  image:
+                    type: string
+                    example: 242h2j2442
+      x-yc-apigateway-integration:
+        http_headers:
+         'Accept': "*/*"
+        type: cloud_functions
+        function_id: d4eohs6c7ae8ej35p1o9
+        service_account_id: *
+  /get_image:
+    post:
+      summary: getting image body
+      operationId: imageBody
+      requestBody:
+        description: im
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                  image_id:
+                    type: string
+                    example: fbvguddghjjnfp4lo5ms
+      responses:
+        '200':
+          description: Another example
+          content:
+            'application/json':
+               schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                  data:
+                    type: string
+                    example: object images
+
+      x-yc-apigateway-integration:
+        http_headers:
+         'Accept': "*/*"
+        type: cloud_functions
+        function_id: d4evi4j6acn1n47eu41k
+        service_account_id: *
