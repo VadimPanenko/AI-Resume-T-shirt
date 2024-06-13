@@ -8,6 +8,6 @@
 ### Архитектура решения
 [![AI-T-shirt-Architecture.png](https://i.postimg.cc/dtXB1kJ6/AI-T-shirt-Architecture.png)](https://postimg.cc/LntfQsYg)
 Все решение выполнено в Yandex.Cloud. За основу взята концепция serverless технологий. У нас есть две cloud функции, API Gateway и frontend, написанный на javascript. Запрос с frontend идет через API Gateway в первую функцию. Функция с помощью Yandex GPT генерирует промт для генерации картинки. Вторая функция берет этот промт, генерирует изображение и отдает в формате base64 все это в frontend. После чего frontend отображает соответствующее изображение.
-## Файл спецификации API Yaml 3.0 для генерации API Gateway Yandex.Cloud (apiGateway.yaml)
-## Код Cloud Functions для создания промта и запроса на создание изображения (index_get_image_id.py)
-## Код Cloud Functions для получения сгенерированного изображения в формате base64 (index_get_image_id.py)
+<br><br>apiGateway.yaml - Файл спецификации API Yaml 3.0 для генерации API Gateway Yandex.Cloud
+<br><br>index_get_image_id.py - Код Cloud Functions для создания промта и запроса на создание изображения
+<br><br>index_get_image_id.py - Код Cloud Functions для получения сгенерированного изображения в формате base64
